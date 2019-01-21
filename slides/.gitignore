@@ -1,4 +1,9 @@
 !utilities
 
+!images
+!images/*.jpg
+
+!figures
+
 !*.tex
 !*.bib
