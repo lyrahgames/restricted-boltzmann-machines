@@ -28,24 +28,16 @@
 
   \section{Problem} % (fold)
   \label{sec:Problem}
-    \begin{frame}{Problem}
-      % \begin{center}
-      %   \includegraphics[height=0.35\textheight]{figures/rbm-scheme.pdf}
-      % \end{center}
-
-      % Why should we talk about Restricted Boltzmann Machines (RBM)?
-      % \begin{itemize}
-      %   \pause
-      %   \item multiple applications in machine learning
-      %   \pause
-      %   \item supervised and unsupervised learning
-      %   \pause
-      %   \item simple and fast basic building blocks in deep learning
-      % \end{itemize}
+    \begin{frame}{Problem: Collaborative Filtering -- Movie Ratings}
+      \begin{center}
+        \includegraphics[height=0.35\textheight]{figures/problem-example.pdf}
+      \end{center}
+      \vfill
+      \pause
       Goal:
       \begin{itemize}
         \pause
-        \item approximate a complex probability distribution
+        \item approximately represent a complex probability distribution
         \pause
         \item learn probability distribution based on given samples
         \pause
@@ -201,7 +193,7 @@
       \end{mybox}
       \vfill
       \begin{itemize}
-        \item use stochastic gradient ascent with minibatches for large training sets
+        \item use stochastic gradient ascent with minibatches
         \pause
         \item evaluating the gradient introduces problems
       \end{itemize}
@@ -221,7 +213,7 @@
 
     \begin{frame}{Learning: Contrastive Divergence}
       \begin{itemize}
-        \item abort Gibbs Sampling after $v^{(1)}$ and $h^{(1)}$ are computed
+        \item abort Gibbs Sampling after $v^{(k)}$ and $h^{(k)}$ are computed
         \pause
         \item approximate the expectation value
       \end{itemize}
@@ -229,16 +221,38 @@
       \vfill
       \begin{mybox}
         \[
-          \expect_ϑ\boxBrackets{\mathscr{V}\transpose{\mathscr{H}}} \approx v^{(1)}\transpose{h^{(1)}}
+          \expect_ϑ\boxBrackets{\mathscr{V}\transpose{\mathscr{H}}} \approx v^{(k)}\transpose{h^{(k)}}
         \]
       \end{mybox}
+    \end{frame}
+
+    \begin{frame}{Learning: Example}
+      \begin{center}
+        \includegraphics[scale=1.0]{figures/rbm-learning-example.pdf}
+      \end{center}
+      \vfill
+      \begin{itemize}
+        \pause
+        \item one RBM for every user with connections for rated movies
+        \pause
+        \item weights and biases off all RBM are tied together
+      \end{itemize}
     \end{frame}
   % section Learning (end)
 
   \section{Inference} % (fold)
   \label{sec:inference}
-    \begin{frame}{Inference}
-
+    \begin{frame}{Inference: Example}
+      \begin{center}
+        \includegraphics[width=\textwidth]{figures/rbm-inference-example.pdf}
+      \end{center}
+      \vfill
+      \begin{itemize}
+        \pause
+        \item compute hidden values only for rated movies
+        \pause
+        \item compute visible values of unrated movies based on hidden values
+      \end{itemize}
     \end{frame}
   % section inference (end)
 
@@ -252,16 +266,31 @@
   \section{Results} % (fold)
   \label{sec:results}
     \begin{frame}{Results}
-
+      \begin{itemize}
+        \item RBMs are a powerful and versatile tool in machine learning
+      \end{itemize}
     \end{frame}
   % section results (end)
 
-  \section{Conclusion} % (fold)
-  \label{sec:conclusion}
-    \begin{frame}{Conclusion}
-
+  \section{Going Further} % (fold)
+  \label{sec:Going Further}
+    \begin{frame}{Going Further: Tweak the Learning}
+      \begin{itemize}
+        \item Contrastive Divergence Variants
+        \item Momentum
+        \item Weight Decay
+        \item Different types of units
+      \end{itemize}
     \end{frame}
-  % section conclusion (end)
+
+    \begin{frame}{Going Further: Applications}
+      \begin{itemize}
+        \item language modeling and document retrieval
+        \item classification
+        \item reducing dimensionality of data
+      \end{itemize}
+    \end{frame}
+  % section Going Further (end)
 
   \begin{frame}
     \frametitle{References}

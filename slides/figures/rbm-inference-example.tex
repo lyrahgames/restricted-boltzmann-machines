@@ -1,0 +1,133 @@
+\documentclass{standalone}
+
+\usepackage{uniinput}
+
+\usepackage{tikz}
+\usetikzlibrary {positioning}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{calc,shapes,fit,backgrounds}
+\definecolor{processblue}{cmyk}{1,1,1,0}
+
+\usepackage{bookman}
+
+\newenvironment{graph}{
+  \begin{tikzpicture}
+  [
+    -latex, auto,
+    node distance =0.1\textwidth and 0.1\textwidth,
+    on grid, semithick,
+    state/.style = {
+      circle,
+      top color = white,
+      bottom color = processblue!10,
+      draw,
+      processblue,
+      text=black,
+      minimum width = 0.7 cm,
+    },
+    visible/.style = {
+      circle,
+      top color = white,
+      bottom color = processblue!10,
+      draw,
+      processblue,
+      text=black,
+      minimum width = 0.8cm,
+    },
+    hidden/.style = {
+      circle,
+      top color = white,
+      bottom color = processblue!70,
+      draw,
+      processblue,
+      text=black,
+      minimum width = 0.8cm,
+    },
+    layer/.style = {
+      rectangle,
+      rounded corners,
+      draw=processblue!50,
+      dotted,
+      align=center,
+      thick
+    },
+    >=Stealth
+  ]
+}{
+  \end{tikzpicture}
+}
+
+\begin{document}
+  \sffamily
+  \begin{graph}
+    \node[hidden,label={[label distance=0cm]90:\tiny Action\vphantom{g}}] (X) {$x$};
+    \node[hidden,label={[label distance=0cm]90:\tiny Fantasy}] (Y) [right=of X] {$y$};
+    \node[hidden,label={[label distance=0cm]90:\tiny Science Fiction\vphantom{g}}] (Z) [right=of Y] {$z$};
+
+    \node[visible,label={[label distance=0cm]270:\tiny Van Helsing}] (C) [below=2cm of Y] {$0$};
+    \node[visible,label={[label distance=0cm]270:\tiny The Matrix}] (B) [left=of C] {$\times$};
+    \node[visible,label={[label distance=0cm]270:\tiny Harry Potter}] (D) [right=of C] {$1$};
+    \node[visible,label={[label distance=0cm]270:\tiny Star Trek}] (A) [left=of B] {$1$};
+    \node[visible,label={[label distance=0cm]270:\tiny The Hobbit}] (E) [right=of D] {$\times$};
+
+    \path[-,processblue!30] (A) edge node {} (X);
+    % \path[-,processblue!30] (B) edge node {} (X);
+    \path[-,processblue!30] (C) edge node {} (X);
+    \path[-,processblue!30] (D) edge node {} (X);
+    % \path[-,processblue!30] (E) edge node {} (X);
+
+    \path[-,processblue!30] (A) edge node {} (Y);
+    % \path[-,processblue!30] (B) edge node {} (Y);
+    \path[-,processblue!30] (C) edge node {} (Y);
+    \path[-,processblue!30] (D) edge node {} (Y);
+    % \path[-,processblue!30] (E) edge node {} (Y);
+
+    \path[-,processblue!30] (A) edge node {} (Z);
+    % \path[-,processblue!30] (B) edge node {} (Z);
+    \path[-,processblue!30] (C) edge node {} (Z);
+    \path[-,processblue!30] (D) edge node {} (Z);
+    % \path[-,processblue!30] (Z) edge node {} (E);
+
+    \node[layer,fit=(A) (E),inner sep = 10pt] (L1) {};
+    \node[layer,fit=(X) (Z),inner sep = 10pt] (L2) {};
+
+    \path[->,bend left=30] ($(L1.north west) + (0.5,0)$) edge node {$p[ϑ](h\vert v)$} (L2.west);
+
+
+
+    \node[hidden,label={[label distance=0cm]90:\tiny Action\vphantom{g}}] (X1) [right=5 of Z] {$0$};
+    \node[hidden,label={[label distance=0cm]90:\tiny Fantasy}] (Y1) [right=of X1] {$1$};
+    \node[hidden,label={[label distance=0cm]90:\tiny Science Fiction\vphantom{g}}] (Z1) [right=of Y1] {$1$};
+
+    \node[visible,label={[label distance=0cm]270:\tiny Van Helsing}] (C1) [below=2cm of Y1] {$0$};
+    \node[visible,label={[label distance=0cm]270:\tiny The Matrix}] (B1) [left=of C1] {$0$};
+    \node[visible,label={[label distance=0cm]270:\tiny Harry Potter}] (D1) [right=of C1] {$1$};
+    \node[visible,label={[label distance=0cm]270:\tiny Star Trek}] (A1) [left=of B1] {$1$};
+    \node[visible,label={[label distance=0cm]270:\tiny The Hobbit}] (E1) [right=of D1] {$1$};
+
+    % \path[-,processblue!30] (A1) edge node {} (X1);
+    \path[-,processblue!30] (B1) edge node {} (X1);
+    % \path[-,processblue!30] (C1) edge node {} (X1);
+    % \path[-,processblue!30] (D1) edge node {} (X1);
+    \path[-,processblue!30] (E1) edge node {} (X1);
+
+    % \path[-,processblue!30] (A1) edge node {} (Y1);
+    \path[-,processblue!30] (B1) edge node {} (Y1);
+    % \path[-,processblue!30] (C1) edge node {} (Y1);
+    % \path[-,processblue!30] (D1) edge node {} (Y1);
+    \path[-,processblue!30] (E1) edge node {} (Y1);
+
+    % \path[-,processblue!30] (A1) edge node {} (Z1);
+    \path[-,processblue!30] (B1) edge node {} (Z1);
+    % \path[-,processblue!30] (C1) edge node {} (Z1);
+    % \path[-,processblue!30] (D1) edge node {} (Z1);
+    \path[-,processblue!30] (Z1) edge node {} (E1);
+
+    \node[layer,fit=(A1) (E1),inner sep = 10pt] (L11) {};
+    \node[layer,fit=(X1) (Z1),inner sep = 10pt] (L21) {};
+
+    \path[->] (L2.east) edge node {} (L21.west);
+
+    \path[->,bend left=30] (L21.east) edge node {$p[ϑ](v\vert h)$} ($(L11.north east) - (0.5,0)$);
+  \end{graph}
+\end{document}
