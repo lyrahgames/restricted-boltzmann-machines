@@ -33,14 +33,23 @@
       %   \includegraphics[height=0.35\textheight]{figures/rbm-scheme.pdf}
       % \end{center}
 
-      Why should we talk about Restricted Boltzmann Machines (RBM)?
+      % Why should we talk about Restricted Boltzmann Machines (RBM)?
+      % \begin{itemize}
+      %   \pause
+      %   \item multiple applications in machine learning
+      %   \pause
+      %   \item supervised and unsupervised learning
+      %   \pause
+      %   \item simple and fast basic building blocks in deep learning
+      % \end{itemize}
+      Goal:
       \begin{itemize}
         \pause
-        \item multiple applications in machine learning
+        \item approximate a complex probability distribution
         \pause
-        \item supervised and unsupervised learning
+        \item learn probability distribution based on given samples
         \pause
-        \item simple and fast basic building blocks in deep learning
+        \item make predictions based on learned parameters
       \end{itemize}
     \end{frame}
   % section Problem (end)
@@ -64,11 +73,15 @@
     \end{frame}
 
     \begin{frame}{The Model: Idea}
-      \vfill
       \begin{center}
-        \includegraphics[scale=1.6]{figures/rbm-scheme-layers.pdf}
+        \includegraphics[scale=1.2]{figures/rbm-scheme-layers.pdf}
       \end{center}
-      \vfill
+      \begin{itemize}
+        \pause
+        \item units are divided into two subsets
+        \pause
+        \item only connections between hidden and visible units are allowed
+      \end{itemize}
     \end{frame}
 
     \begin{frame}{The Model: Idea -- Inputs}
@@ -164,27 +177,59 @@
   \section{Learning} % (fold)
   \label{sec:Learning}
     \begin{frame}{Learning: Maximum Likelihood Estimation}
-      Training Samples:
-      \[
-        s\in\setNatural
-        \separate
-        \mathscr{S} \in V^s
-      \]
-      \vfill
-      Log-Likelihood Function:
       \begin{mybox}
         \[
+          \mathscr{S} \in V^s
+          \separate
           \function{\mathscr{L}[\mathscr{S}]}{\setReal^{n\times m + n + m}}{\setReal}
           \separate
           \mathscr{L}[\mathscr{S}](ϑ) \define \frac{1}{s} \sum_{k=1}^s \ln p[ϑ]\roundBrackets{\mathscr{S}_k}
         \]
       \end{mybox}
+      \vfill
+      \begin{itemize}
+        \item maximize the product of probabilities of given samples
+        \item equivalent to maximizing log-likelihood function
+      \end{itemize}
     \end{frame}
 
     \begin{frame}{Learning: Gradient Ascent}
       \begin{mybox}
         \[
-          \nabla_W \mathscr{L}[\mathscr{S}](ϑ) = \frac{1}{s} \sum_{k=1}^s \expect\boxBrackets{\mathscr{S}}
+          \nabla_W \mathscr{L}[\mathscr{S}](ϑ) = \frac{1}{s} \sum_{k=1}^s \expect_ϑ\boxBrackets{\mathscr{V}\transpose{\mathscr{H}} \middle\vert \mathscr{S}_k} - \expect_ϑ\boxBrackets{\mathscr{V}\transpose{\mathscr{H}}}
+        \]
+      \end{mybox}
+      \vfill
+      \begin{itemize}
+        \item use stochastic gradient ascent with minibatches for large training sets
+        \pause
+        \item evaluating the gradient introduces problems
+      \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Learning: Gibbs Sampling}
+      \begin{center}
+        \includegraphics[width=\textwidth]{figures/gibbs-sampling-scheme.pdf}
+      \end{center}
+      \vfill
+      \begin{itemize}
+        \item to estimate $\expect_ϑ\boxBrackets{\mathscr{V}\transpose{\mathscr{H}}}$ perform Gibbs sampling
+        \pause
+        \item slow because it has to reach equilibrium
+      \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Learning: Contrastive Divergence}
+      \begin{itemize}
+        \item abort Gibbs Sampling after $v^{(1)}$ and $h^{(1)}$ are computed
+        \pause
+        \item approximate the expectation value
+      \end{itemize}
+      \pause
+      \vfill
+      \begin{mybox}
+        \[
+          \expect_ϑ\boxBrackets{\mathscr{V}\transpose{\mathscr{H}}} \approx v^{(1)}\transpose{h^{(1)}}
         \]
       \end{mybox}
     \end{frame}
