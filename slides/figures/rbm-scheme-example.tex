@@ -1,0 +1,92 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usetikzlibrary {positioning}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{calc,shapes,fit,backgrounds}
+\definecolor{processblue}{cmyk}{1,1,1,0}
+
+\usepackage{bookman}
+
+\newenvironment{graph}{
+  \begin{tikzpicture}
+  [
+    -latex, auto,
+    node distance =0.1\textwidth and 0.1\textwidth,
+    on grid, semithick,
+    state/.style = {
+      circle,
+      top color = white,
+      bottom color = processblue!10,
+      draw,
+      processblue,
+      text=black,
+      minimum width = 0.7 cm,
+    },
+    visible/.style = {
+      circle,
+      top color = white,
+      bottom color = processblue!10,
+      draw,
+      processblue,
+      text=black,
+      minimum width = 0.8cm,
+    },
+    hidden/.style = {
+      circle,
+      top color = white,
+      bottom color = processblue!70,
+      draw,
+      processblue,
+      text=black,
+      minimum width = 0.8cm,
+    },
+    layer/.style = {
+      rectangle,
+      rounded corners,
+      draw=processblue!50,
+      dotted,
+      align=center,
+      thick
+    },
+    >=Stealth
+  ]
+}{
+  \end{tikzpicture}
+}
+
+\begin{document}
+  \sffamily
+  \begin{graph}
+    \node[hidden,label={[label distance=0cm]90:\tiny Action\vphantom{g}}] (X) {$0$};
+    \node[hidden,label={[label distance=0cm]90:\tiny Fantasy}] (Y) [right=of X] {$1$};
+    \node[hidden,label={[label distance=0cm]90:\tiny Science Fiction\vphantom{g}}] (Z) [right=of Y] {$1$};
+
+    \node[visible,label={[label distance=0cm]270:\tiny Van Helsing}] (C) [below=2cm of Y] {$0$};
+    \node[visible,label={[label distance=0cm]270:\tiny The Matrix}] (B) [left=of C] {$0$};
+    \node[visible,label={[label distance=0cm]270:\tiny Harry Potter}] (D) [right=of C] {$1$};
+    \node[visible,label={[label distance=0cm]270:\tiny Star Trek}] (A) [left=of B] {$1$};
+    \node[visible,label={[label distance=0cm]270:\tiny The Hobbit}] (E) [right=of D] {$x$};
+
+    \path[-,processblue!30] (A) edge node {} (X);
+    \path[-,processblue!30] (B) edge node {} (X);
+    \path[-,processblue!30] (C) edge node {} (X);
+    \path[-,processblue!30] (D) edge node {} (X);
+    \path[-,processblue!30] (E) edge node {} (X);
+
+    \path[-,processblue!30] (A) edge node {} (Y);
+    \path[-,processblue!30] (B) edge node {} (Y);
+    \path[-,processblue!30] (C) edge node {} (Y);
+    \path[-,processblue!30] (D) edge node {} (Y);
+    \path[-,processblue!30] (E) edge node {} (Y);
+
+    \path[-,processblue!30] (A) edge node {} (Z);
+    \path[-,processblue!30] (B) edge node {} (Z);
+    \path[-,processblue!30] (C) edge node {} (Z);
+    \path[-,processblue!30] (D) edge node {} (Z);
+    \path[-,processblue!30] (Z) edge node {} (E);
+
+    \node[layer,fit=(A) (E),inner sep = 10pt,label={[label distance=0cm]270:Movie Ratings}] (L1) {};
+    \node[layer,fit=(X) (Z),inner sep = 10pt,label={[label distance=0cm]90:Features}] (L2) {};
+  \end{graph}
+\end{document}

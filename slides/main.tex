@@ -2,6 +2,8 @@
 \PassOptionsToPackage{english}{babel}
 \usepackage{standardslides}
 
+\def\UrlBigBreaks{\do\/\do-\do:}
+
 \title{Restricted Boltzmann Machines}
 \author{Markus Pawellek}
 
@@ -9,6 +11,7 @@
 \DeclareMathOperator{\expect}{\mathds{E}}
 \begin{document}
   \selectlanguage{english}
+  \urlstyle{sf}
   \renewcommand{\separate}{\qquad}
 
   \begin{frame}
@@ -23,12 +26,12 @@
     \hfill\parbox[t][7cm][l]{0.9\textwidth}{\tableofcontents}
   \end{frame}
 
-  \section{Introduction} % (fold)
-  \label{sec:introduction}
-    \begin{frame}{Introduction}
-      \begin{center}
-        \includegraphics[height=0.35\textheight]{figures/rbm-scheme.pdf}
-      \end{center}
+  \section{Problem} % (fold)
+  \label{sec:Problem}
+    \begin{frame}{Problem}
+      % \begin{center}
+      %   \includegraphics[height=0.35\textheight]{figures/rbm-scheme.pdf}
+      % \end{center}
 
       Why should we talk about Restricted Boltzmann Machines (RBM)?
       \begin{itemize}
@@ -40,60 +43,67 @@
         \item simple and fast basic building blocks in deep learning
       \end{itemize}
     \end{frame}
-  % section introduction (end)
+  % section Problem (end)
 
   \section{The Model} % (fold)
   \label{sec:The Model}
     \begin{frame}{The Model: Idea}
+      \vfill
       \begin{center}
-        \includegraphics[width=0.7\textwidth]{figures/rbm-scheme.pdf}
+        \includegraphics[scale=1.6]{figures/rbm-scheme-empty.pdf}
       \end{center}
+      \vfill
     \end{frame}
 
-    \begin{frame}{The Model: Definition}
+    \begin{frame}{The Model: Idea}
+      \vfill
       \begin{center}
-        \includegraphics[height=0.35\textheight]{figures/rbm-scheme.pdf}
+        \includegraphics[scale=1.6]{figures/rbm-scheme-arrows.pdf}
       \end{center}
+      \vfill
+    \end{frame}
 
+    \begin{frame}{The Model: Idea}
+      \vfill
+      \begin{center}
+        \includegraphics[scale=1.6]{figures/rbm-scheme-layers.pdf}
+      \end{center}
+      \vfill
+    \end{frame}
+
+    \begin{frame}{The Model: Idea -- Inputs}
+      \vfill
+      \begin{center}
+        \includegraphics[scale=1.6]{figures/rbm-scheme-inputs.pdf}
+      \end{center}
+      \vfill
+    \end{frame}
+
+    \begin{frame}{The Model: Idea -- Example}
+      \vfill
+      \begin{center}
+        \includegraphics[scale=1.6]{figures/rbm-scheme-example.pdf}
+      \end{center}
+      \vfill
+    \end{frame}
+
+    \begin{frame}{The Model: Parameters}
+      \begin{center}
+        \includegraphics[scale=1.2]{figures/rbm-scheme.pdf}
+      \end{center}
+      \pause
       \begin{mybox}
         \[
-          n,m \in \setNatural
-          \separate
           v \in V \define \set{0,1}{}^n
           \separate
           h \in H \define \set{0,1}{}^m
-        \]
-        \[
-          W \in \setReal^{n\times m}
           \separate
-          b \in \setReal^n
-          \separate
-          c \in \setReal^m
-          \separate
-          ϑ \define (W,b,c)
+          ϑ \define (W,b,c) \in \setReal^{(n\times m) + n + m}
         \]
       \end{mybox}
     \end{frame}
 
-    \begin{frame}{The Model: Energy}
-      \begin{center}
-        \includegraphics[height=0.35\textheight]{figures/rbm-scheme.pdf}
-      \end{center}
-
-      \begin{mybox}
-        \[
-          \function{E[ϑ]}{V\times H}{\setReal}
-          \separate
-          E[ϑ](v,h) \define -\transpose{v}Wh - \transpose{v}b - \transpose{h}c
-        \]
-      \end{mybox}
-    \end{frame}
-
-    \begin{frame}{The Model: Probability Distribution}
-      \begin{center}
-        \includegraphics[height=0.35\textheight]{figures/rbm-scheme.pdf}
-      \end{center}
-
+    \begin{frame}{The Model: Probability Distribution and Energy}
       \begin{mybox}
         \[
           \function{p[ϑ]}{V\times H}{[0,1]}
@@ -101,12 +111,17 @@
           p[ϑ](v,h) \define \frac{e^{ -E[ϑ](v,h) }}{Z(ϑ)}
         \]
       \end{mybox}
-    \end{frame}
-
-    \begin{frame}{The Model: Normalization}
-      \begin{center}
-        \includegraphics[height=0.35\textheight]{figures/rbm-scheme.pdf}
-      \end{center}
+      \pause
+      \vfill
+      \begin{mybox}
+        \[
+          \function{E[ϑ]}{V\times H}{\setReal}
+          \separate
+          E[ϑ](v,h) \define -\transpose{v}Wh - \transpose{v}b - \transpose{h}c
+        \]
+      \end{mybox}
+      \pause
+      \vfill
       \begin{mybox}
         \[
           Z(ϑ) \define \sum_{v\in V} \sum_{h\in H} e^{ -E[ϑ](v,h) }
@@ -114,10 +129,7 @@
       \end{mybox}
     \end{frame}
 
-    \begin{frame}{The Model: Probability for Visible Units}
-      \begin{center}
-        \includegraphics[height=0.35\textheight]{figures/rbm-scheme.pdf}
-      \end{center}
+    \begin{frame}{The Model: Probability Distribution for Visible Units}
       \begin{mybox}
         \[
           \function{p[ϑ]}{V}{[0,1]}
@@ -129,12 +141,19 @@
 
     \begin{frame}{The Model: Posterior Probability}
       \begin{center}
-        \includegraphics[height=0.35\textheight]{figures/rbm-scheme.pdf}
+        \includegraphics[scale=1.2]{figures/rbm-scheme-inputs-only.pdf}
       \end{center}
+      \pause
       \begin{mybox}
         \[
-          p[ϑ](h \vert v) = \prod_{j=1}^m p[ϑ]\roundBrackets{h_j=1 \middle\vert v} =\prod_{j=1}^m \sigm\roundBrackets{c_j + \sum_{i=1}^n v_i w_{ij}}
+          p[ϑ](h \vert v) = \prod_{j=1}^m p[ϑ]\roundBrackets{h_j=1 \middle\vert v}
         \]
+        % \[
+        %   p[ϑ](v \vert h) = \prod_{i=1}^n p[ϑ]\roundBrackets{v_i=1 \middle\vert h}
+        % \]
+        % \[
+        %   p[ϑ](h \vert v) = \prod_{j=1}^m p[ϑ]\roundBrackets{h_j=1 \middle\vert v} =\prod_{j=1}^m \sigm\roundBrackets{c_j + \sum_{i=1}^n v_i w_{ij}}
+        % \]
         % \[
         %   p[ϑ](v \vert h) = \prod_{i=1}^n p[ϑ]\roundBrackets{v_i=1 \middle\vert h} =\prod_{i=1}^n \sigm\roundBrackets{b_i + \sum_{j=1}^m w_{ij} h_j}
         % \]

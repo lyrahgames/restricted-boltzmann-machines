@@ -1,9 +1,12 @@
 \documentclass{standalone}
 
 \usepackage{tikz}
-\usetikzlibrary{positioning,fit,shapes,calc}
+\usetikzlibrary {positioning}
 \usetikzlibrary{arrows.meta}
+\usetikzlibrary{calc,shapes,fit}
 \definecolor{processblue}{cmyk}{1,1,1,0}
+
+\usepackage{bookman}
 
 \newenvironment{graph}{
   \begin{tikzpicture}
@@ -41,12 +44,10 @@
     layer/.style = {
       rectangle,
       rounded corners,
-      draw=processblue!80,
+      draw=processblue!50,
+      dotted,
       align=center,
-      % thick,
-      fill = processblue,
-      fill opacity =0.1,
-      text=black,
+      thick
     },
     >=Stealth
   ]
@@ -55,6 +56,7 @@
 }
 
 \begin{document}
+  \sffamily
   \begin{graph}
     \node[hidden] (X) {$h_1$};
     \node[hidden] (Y) [right=of X] {$h_2$};
@@ -66,27 +68,25 @@
     \node[visible] (A) [left=of B] {$v_1$};
     \node[visible] (E) [right=of D] {$v_5$};
 
-    \path[-,processblue!50] (A) edge node {} (X);
-    \path[-,processblue!50] (B) edge node {} (X);
-    \path[-,processblue!50] (C) edge node {} (X);
-    \path[-,processblue!50] (D) edge node {} (X);
-    \path[-,processblue!50] (E) edge node {} (X);
+    \path[-] (A) edge node {} (X);
+    \path[-] (B) edge node {} (X);
+    \path[-] (C) edge node {} (X);
+    \path[-] (D) edge node {} (X);
+    \path[-] (E) edge node {} (X);
 
-    \path[-,processblue!50] (A) edge node {} (Y);
-    \path[-,processblue!50] (B) edge node {} (Y);
-    \path[-,processblue!50] (C) edge node {} (Y);
-    \path[-,processblue!50] (D) edge node {} (Y);
-    \path[-,processblue!50] (E) edge node {} (Y);
+    \path[-] (A) edge node {} (Y);
+    \path[-] (B) edge node {} (Y);
+    \path[-] (C) edge node {} (Y);
+    \path[-] (D) edge node {} (Y);
+    \path[-] (E) edge node {} (Y);
 
-    \path[-,processblue!50] (A) edge node {} (Z);
-    \path[-,processblue!50] (B) edge node {} (Z);
-    \path[-,processblue!50] (C) edge node {} (Z);
-    \path[-,processblue!50] (D) edge node {} (Z);
-    \path[-,processblue!50] (Z) edge node {} (E);
+    \path[-] (A) edge node {} (Z);
+    \path[-] (B) edge node {} (Z);
+    \path[-] (C) edge node {} (Z);
+    \path[-] (D) edge node {} (Z);
+    \path[-] (Z) edge node {} (E);
 
-    \node[layer,fit=(A) (E),label={[label distance=0cm]0:$b$}] (L1) {};
-    \node[layer,fit=(X) (Z),label={[label distance=0cm]0:$c$}] (L2) {};
-    \draw[layer] (-1.2,-1.2) rectangle (3.8,-0.8);
-    \node (W) at (4.1,-1) {$W$};
+    \node[layer,fit=(A) (E),label={[label distance=0cm]270:Visible Units}] (L1) {};
+    \node[layer,fit=(X) (Z),label={[label distance=0cm]90:Hidden Units}] (L2) {};
   \end{graph}
 \end{document}

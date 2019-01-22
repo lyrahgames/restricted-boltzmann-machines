@@ -1,0 +1,77 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usetikzlibrary {positioning}
+\usetikzlibrary{arrows.meta}
+\definecolor{processblue}{cmyk}{1,1,1,0}
+
+\newenvironment{graph}{
+  \begin{tikzpicture}
+  [
+    -latex, auto,
+    node distance =0.1\textwidth and 0.1\textwidth,
+    on grid, semithick,
+    state/.style = {
+      circle,
+      top color = white,
+      bottom color = processblue!10,
+      draw,
+      processblue,
+      text=black,
+      minimum width = 0.7 cm,
+    },
+    visible/.style = {
+      circle,
+      top color = white,
+      bottom color = processblue!10,
+      draw,
+      processblue,
+      text=black,
+      minimum width = 0.8cm,
+    },
+    hidden/.style = {
+      circle,
+      top color = white,
+      bottom color = processblue!70,
+      draw,
+      processblue,
+      text=black,
+      minimum width = 0.8cm,
+    },
+    >=Stealth
+  ]
+}{
+  \end{tikzpicture}
+}
+
+\begin{document}
+  \begin{graph}
+    \node[hidden] (X) {$c_1$};
+    \node[hidden] (Y) [right=of X] {$c_2$};
+    \node[hidden] (Z) [right=of Y] {$c_3$};
+
+    \node[visible] (C) [below=2cm of Y] {$b_3$};
+    \node[visible] (B) [left=of C] {$b_2$};
+    \node[visible] (D) [right=of C] {$b_4$};
+    \node[visible] (A) [left=of B] {$b_1$};
+    \node[visible] (E) [right=of D] {$b_5$};
+
+    \path[-] (A) edge node {} (X);
+    \path[-] (B) edge node {} (X);
+    \path[-] (C) edge node {} (X);
+    \path[-] (D) edge node {} (X);
+    \path[-] (E) edge node {} (X);
+
+    \path[-] (A) edge node {} (Y);
+    \path[-] (B) edge node {} (Y);
+    \path[-] (C) edge node {} (Y);
+    \path[-] (D) edge node {} (Y);
+    \path[-] (E) edge node {} (Y);
+
+    \path[-] (A) edge node {} (Z);
+    \path[-] (B) edge node {} (Z);
+    \path[-] (C) edge node {} (Z);
+    \path[-] (D) edge node {} (Z);
+    \path[-] (Z) edge node {$(w_{ij})$} (E);
+  \end{graph}
+\end{document}
