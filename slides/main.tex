@@ -42,15 +42,15 @@
     \end{frame}
   % section introduction (end)
 
-  \section{Fundamentals} % (fold)
-  \label{sec:Fundamentals}
-    \begin{frame}{Fundamentals: Idea}
+  \section{The Model} % (fold)
+  \label{sec:The Model}
+    \begin{frame}{The Model: Idea}
       \begin{center}
         \includegraphics[width=0.7\textwidth]{figures/rbm-scheme.pdf}
       \end{center}
     \end{frame}
 
-    \begin{frame}{Fundamentals: Definition}
+    \begin{frame}{The Model: Definition}
       \begin{center}
         \includegraphics[height=0.35\textheight]{figures/rbm-scheme.pdf}
       \end{center}
@@ -75,7 +75,7 @@
       \end{mybox}
     \end{frame}
 
-    \begin{frame}{Fundamentals: Energy}
+    \begin{frame}{The Model: Energy}
       \begin{center}
         \includegraphics[height=0.35\textheight]{figures/rbm-scheme.pdf}
       \end{center}
@@ -89,7 +89,7 @@
       \end{mybox}
     \end{frame}
 
-    \begin{frame}{Fundamentals: Probability Distribution}
+    \begin{frame}{The Model: Probability Distribution}
       \begin{center}
         \includegraphics[height=0.35\textheight]{figures/rbm-scheme.pdf}
       \end{center}
@@ -103,7 +103,7 @@
       \end{mybox}
     \end{frame}
 
-    \begin{frame}{Fundamentals: Normalization}
+    \begin{frame}{The Model: Normalization}
       \begin{center}
         \includegraphics[height=0.35\textheight]{figures/rbm-scheme.pdf}
       \end{center}
@@ -114,7 +114,7 @@
       \end{mybox}
     \end{frame}
 
-    \begin{frame}{Fundamentals: Probability for Visible Units}
+    \begin{frame}{The Model: Probability for Visible Units}
       \begin{center}
         \includegraphics[height=0.35\textheight]{figures/rbm-scheme.pdf}
       \end{center}
@@ -127,7 +127,7 @@
       \end{mybox}
     \end{frame}
 
-    \begin{frame}{Fundamentals: Posterior Probability}
+    \begin{frame}{The Model: Posterior Probability}
       \begin{center}
         \includegraphics[height=0.35\textheight]{figures/rbm-scheme.pdf}
       \end{center}
@@ -140,7 +140,7 @@
         % \]
       \end{mybox}
     \end{frame}
-  % section Fundamentals (end)
+  % section The Model (end)
 
   \section{Learning} % (fold)
   \label{sec:Learning}
@@ -165,11 +165,18 @@
     \begin{frame}{Learning: Gradient Ascent}
       \begin{mybox}
         \[
-          \nabla_W \mathscr{L}[\mathscr{S}](ϑ) = \frac{1}{s}\sum_{k=1}^s \expect\boxBrackets{\mathscr}
+          \nabla_W \mathscr{L}[\mathscr{S}](ϑ) = \frac{1}{s} \sum_{k=1}^s \expect\boxBrackets{\mathscr{S}}
         \]
       \end{mybox}
     \end{frame}
   % section Learning (end)
+
+  \section{Inference} % (fold)
+  \label{sec:inference}
+    \begin{frame}{Inference}
+
+    \end{frame}
+  % section inference (end)
 
   \section{Implementation} % (fold)
   \label{sec:implementation}

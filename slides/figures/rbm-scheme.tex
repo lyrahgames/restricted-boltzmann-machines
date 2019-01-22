@@ -46,15 +46,15 @@
 
 \begin{document}
   \begin{graph}
-    \node[hidden,label={[label distance=0cm]110:$h_1$}] (A) {$c_1$};
-    \node[hidden,label={[label distance=0cm]110:$h_2$}] (B) [right=of A] {$c_2$};
-    \node[hidden,label={[label distance=0cm]110:$h_3$}] (C) [right=of B] {$c_3$};
-    \node[hidden,label={[label distance=0cm]110:$h_4$}] (D) [right=of C] {$c_4$};
-    \node[hidden,label={[label distance=0cm]110:$h_5$}] (E) [right=of D] {$c_5$};
+    \node[hidden,label={[label distance=0cm]90:$h_1$}] (X) {$c_1$};
+    \node[hidden,label={[label distance=0cm]90:$h_2$}] (Y) [right=of X] {$c_2$};
+    \node[hidden,label={[label distance=0cm]90:$h_3$}] (Z) [right=of Y] {$c_3$};
 
-    \node[visible,label={[label distance=0cm]250:$v_1$}] (X) [below=2cm of B] {$b_1$};
-    \node[visible,label={[label distance=0cm]250:$v_2$}] (Y) [right=of X] {$b_2$};
-    \node[visible,label={[label distance=0cm]250:$v_3$}] (Z) [right=of Y] {$b_3$};
+    \node[visible,label={[label distance=0cm]270:$v_3$}] (C) [below=2cm of Y] {$b_3$};
+    \node[visible,label={[label distance=0cm]270:$v_2$}] (B) [left=of C] {$b_2$};
+    \node[visible,label={[label distance=0cm]270:$v_4$}] (D) [right=of C] {$b_4$};
+    \node[visible,label={[label distance=0cm]270:$v_1$}] (A) [left=of B] {$b_1$};
+    \node[visible,label={[label distance=0cm]270:$v_5$}] (E) [right=of D] {$b_5$};
 
     \path[-] (A) edge node {} (X);
     \path[-] (B) edge node {} (X);
@@ -72,6 +72,6 @@
     \path[-] (B) edge node {} (Z);
     \path[-] (C) edge node {} (Z);
     \path[-] (D) edge node {} (Z);
-    \path[-] (E) edge node {$(w_{ij})$} (Z);
+    \path[-] (Z) edge node {$(w_{ij})$} (E);
   \end{graph}
 \end{document}
