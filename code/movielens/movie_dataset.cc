@@ -38,6 +38,10 @@ movie_dataset::movie_dataset(const char* file_path) {
     // ignore genres
     ignore_line();
   }
+
+  if ((index_.size() != movie_id_.size()) ||
+      (index_.size() != movie_title_.size()))
+    throw runtime_error("File may contain doubled entries!");
 }
 
 }  // namespace movielens

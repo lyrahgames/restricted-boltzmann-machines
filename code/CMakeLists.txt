@@ -14,8 +14,3 @@ target_link_libraries(main
   PRIVATE
     movielens
 )
-
-target_compile_features(main
-  PRIVATE
-    cxx_std_17
-)

@@ -5,6 +5,7 @@ enable_testing()
 
 add_library(movielens
   movie_dataset.cc
+  rating_dataset.cc
 )
 
 target_include_directories(movielens PUBLIC ..)
