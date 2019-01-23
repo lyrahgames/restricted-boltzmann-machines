@@ -1,4 +1,5 @@
 !tests
+!movielens
 
 !*.h
 !*.cc
