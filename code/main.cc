@@ -30,17 +30,31 @@ int main(int argc, char** argv) {
   // }
   // cout << endl;
 
-  const auto& histogram = ratings.rating_histogram();
-  for (auto i = 0; i < histogram.size(); ++i) {
-    cout << i << "\t"
-         << static_cast<int>(ceil(exp(i / ratings.rating_histogram_factor())))
-         << "\t" << histogram[i] << endl;
-  }
-  cout << endl;
+  // const auto& histogram = ratings.rating_histogram();
+  // for (auto i = 0; i < histogram.size(); ++i) {
+  //   cout << i << "\t"
+  //        << static_cast<int>(ceil(exp(i /
+  //        ratings.rating_histogram_factor())))
+  //        << "\t" << histogram[i] << endl;
+  // }
+  // cout << endl;
 
-  cout << "movie count = " << movies.size() << endl
-       << "user count = " << ratings.size() << endl
-       << "max rating count = " << ratings.max_rating_count() << endl
-       << "mean rating count = " << ratings.mean_rating_count() << endl
-       << "std dev rating count = " << sqrt(ratings.var_rating_count()) << endl;
+  // cout << "movie count = " << movies.size() << endl
+  //      << "user count = " << ratings.size() << endl
+  //      << "max rating count = " << ratings.max_rating_count() << endl
+  //      << "mean rating count = " << ratings.mean_rating_count() << endl
+  //      << "std dev rating count = " << sqrt(ratings.var_rating_count()) <<
+  //      endl;
+
+  // const auto& histogram = ratings.rating_histogram();
+  // for (auto i = 0; i < histogram.size(); ++i) {
+  //   const float position =
+  //       0.5 * (ceil(exp(i / ratings.rating_histogram_factor())) +
+  //              ceil(exp((i + 1) / ratings.rating_histogram_factor())));
+  //   const float width = ceil(exp((i + 1) /
+  //   ratings.rating_histogram_factor())) -
+  //                       ceil(exp(i / ratings.rating_histogram_factor()));
+  //   cout << position << "\t" << histogram[i] << "\t" << width << endl;
+  // }
+  // cout << endl;
 }

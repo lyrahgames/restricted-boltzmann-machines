@@ -14,3 +14,12 @@ target_link_libraries(main
   PRIVATE
     movielens
 )
+
+add_executable(rating-histogram
+  rating_histogram.cc
+)
+
+target_link_libraries(rating-histogram
+  PRIVATE
+    movielens
+)
