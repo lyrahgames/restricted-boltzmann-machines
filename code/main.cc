@@ -3,6 +3,7 @@
 
 #include <movielens/movie_dataset.h>
 #include <movielens/rating_dataset.h>
+#include <movielens/rbm.h>
 
 int main(int argc, char** argv) {
   using namespace std;
@@ -22,6 +23,8 @@ int main(int argc, char** argv) {
   // cout << "movie count = " << movies.size() << endl;
 
   movielens::rating_dataset ratings{argv[2]};
+
+  // movielens::rbm{movies, ratings};
 
   // for (auto i = 0; i < ratings.size(); ++i) {
   //   cout << i << "\t" << ratings.user_id(i) << "\t" <<

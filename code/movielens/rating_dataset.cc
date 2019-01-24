@@ -5,6 +5,7 @@
 #include <fstream>
 #include <limits>
 #include <stdexcept>
+#include <string>
 
 namespace movielens {
 
@@ -20,54 +21,56 @@ rating_dataset::rating_dataset(const char* file_path) {
   const auto ignore_line = [&file]() {
     file.ignore(numeric_limits<streamsize>::max(), '\n');
   };
-  const auto match = [&file](char c) { return (c == file.get()); };
+  const auto match = [&file](char c) {
+    if (c != file.get()) throw runtime_error("Format does not match!");
+  };
+
+  std::vector<Eigen::Triplet<float>> rating_list;
 
   // ignore header
   ignore_line();
   int user_id;
   while (file >> user_id) {  // get user_id in place
-    if (user_index_.try_emplace(user_id, user_id_.size()).second) {
+    const auto user_emplace = user_index_.try_emplace(user_id, user_id_.size());
+    const auto new_user_emplaced = user_emplace.second;
+    const auto user_index = user_emplace.first->second;
+    if (new_user_emplaced) {
       user_id_.push_back(user_id);
-      rating_count_.push_back(0);
+      user_rating_count_.push_back(0);
     }
 
-    ++rating_count_[user_index_[user_id]];
+    match(',');
 
-    // ignore genres
+    int movie_id;
+    file >> movie_id;
+    const auto movie_emplace =
+        movie_index_.try_emplace(movie_id, movie_id_.size());
+    const auto new_movie_emplaced = movie_emplace.second;
+    const auto movie_index = movie_emplace.first->second;
+    if (new_movie_emplaced) {
+      movie_id_.push_back(user_id);
+      movie_rating_count_.push_back(0);
+    }
+
+    match(',');
+
+    float rating;
+    file >> rating;
+    rating_list.push_back({user_index, movie_index, rating});
+
+    ++user_rating_count_[user_index];
+    ++movie_rating_count_[movie_index];
+
     ignore_line();
   }
 
-  if (user_index_.size() != user_id_.size())
-    throw runtime_error("File may contain doubled entries!");
-
-  // rating count statistics
-  max_rating_count_ = 0;
-  mean_rating_count_ = 0;
-  for (auto x : rating_count_) {
-    max_rating_count_ = max(max_rating_count_, x);
-    mean_rating_count_ += x;
-  }
-
-  mean_rating_count_ /= rating_count_.size();
-  var_rating_count_ = 0;
-  for (auto x : rating_count_) {
-    const float tmp = x - mean_rating_count_;
-    var_rating_count_ += tmp * tmp;
-  }
-  var_rating_count_ /= (rating_count_.size() - 1);
-
-  // rating_histogram_.resize(1 +
-  //                           max_rating_count_ / rating_histogram_bin_size_);
-  // for (auto x : rating_count_) {
-  //   ++rating_histogram_[x / rating_histogram_bin_size_];
+  // for (auto i = 0; i < user_id_.size(); ++i) {
+  //   if (i != user_index_[user_id_[i]])
+  //     throw runtime_error("Something went wrong!");
   // }
-  rating_histogram_.resize(
-      1 + static_cast<int>(
-              floor(log(max_rating_count_) * rating_histogram_factor_)));
-  for (auto x : rating_count_) {
-    ++rating_histogram_[static_cast<int>(
-        floor(log(x) * rating_histogram_factor_))];
-  }
+
+  ratings_ = Matrix(user_id_.size(), movie_id_.size());
+  ratings_.setFromTriplets(rating_list.begin(), rating_list.end());
 }
 
 }  // namespace movielens
