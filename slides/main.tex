@@ -256,26 +256,48 @@
     \end{frame}
   % section inference (end)
 
-  % \section{Implementation} % (fold)
-  % \label{sec:implementation}
-  %   \begin{frame}{Implementation}
-
-  %   \end{frame}
-  % % section implementation (end)
-
-  \section{Results} % (fold)
-  \label{sec:results}
-    \begin{frame}{Results: MovieLens Dataset by GroupLens}
-      \includegraphics[width=0.45\textwidth]{figures/movielens-user-histogram.pdf}
+  \section{Implementation} % (fold)
+  \label{sec:implementation}
+    \begin{frame}{Implementation: MovieLens Dataset by GroupLens}
+      \includegraphics[width=0.47\textwidth]{figures/movielens-user-histogram.pdf}
       \hfill
-      \includegraphics[width=0.45\textwidth]{figures/movielens-movie-histogram.pdf}
+      \includegraphics[width=0.47\textwidth]{figures/movielens-movie-histogram.pdf}
       \vfill
       \begin{itemize}
         \item $\sim$ 27,000,000 ratings, $\sim$ 58,000 movies, $\sim$ 280,000 users
-        \item current implementation not completely tested \\ ($\sim 80\%$ correct predictions)
       \end{itemize}
     \end{frame}
-  % section results (end)
+
+    \begin{frame}{Implementation: Rating Database}
+      \begin{center}
+        \includegraphics[height=0.35\textheight]{figures/problem-example.pdf}
+      \end{center}
+      \vfill
+      \begin{itemize}
+        \pause
+        \item implement as sparse matrix in CSR format
+        \pause
+        \item entries should be floating point
+      \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Implementation: Training and Testing}
+      \begin{itemize}
+        \item same users in training and testing dataset
+        \pause
+        \item divide ratings of users into training and testing dataset
+        \pause
+        \item learn biases and weights for every user only for rated movies
+      \end{itemize}
+    \end{frame}
+  % section implementation (end)
+
+  % \section{Results} % (fold)
+  % \label{sec:results}
+  %   \begin{frame}{Results}
+
+  %   \end{frame}
+  % % section results (end)
 
   \section{Going Further} % (fold)
   \label{sec:Going Further}
