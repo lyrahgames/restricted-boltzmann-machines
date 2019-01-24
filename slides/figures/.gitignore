@@ -1,2 +1,8 @@
 !*.pdf
 !*.tex
+!*.txt
+!*.gp
+
+!makefile
+!main.gp-style
+!main.tex-style
