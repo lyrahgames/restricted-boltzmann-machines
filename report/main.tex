@@ -1,0 +1,44 @@
+\documentclass[fleqn,10pt,twoside]{article}
+\usepackage{standard}
+
+\geometry{a4paper, lmargin=45mm, rmargin=35mm, tmargin=40mm, bmargin=35mm}
+\pagestyle{mainstyle}
+
+\urlstyle{same}
+\def\UrlBigBreaks{\do\/\do-\do:}
+
+
+\begin{document}
+  \import{}{titlepage}
+
+  \cleardoublepage
+  \pagenumbering{roman}
+  \thispagestyle{sectionstyle}
+  \tableofcontents
+
+  \cleardoublepage
+  \pagenumbering{arabic}
+  \thispagestyle{sectionstyle}
+  \import{}{title}
+  \bigskip
+  \import{.}{abstract}
+  \bigskip
+  \import{}{introduction.tex}
+  \import{}{background.tex}
+  \import{}{model}
+  \import{}{learning}
+  \import{}{inference}
+  \import{}{implementation.tex}
+  % \import{}{results.tex}
+  \import{}{conclusion.tex}
+
+  \nocite{*}
+  \phantomsection
+  \addcontentsline{toc}{section}{References}
+  \bibliographystyle{babplain}
+  \bibliography{references}
+
+  % \cleardoublepage
+  % \appendix
+  % \pagenumbering{roman}
+\end{document}
