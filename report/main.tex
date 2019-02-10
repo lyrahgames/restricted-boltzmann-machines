@@ -1,7 +1,8 @@
 \documentclass[fleqn,10pt,twoside]{article}
 \usepackage{standard}
 
-\geometry{a4paper, lmargin=45mm, rmargin=35mm, tmargin=40mm, bmargin=35mm}
+% \geometry{a4paper, lmargin=45mm, rmargin=35mm, tmargin=40mm, bmargin=35mm}
+\geometry{a4paper, lmargin=27mm, rmargin=27mm, tmargin=30mm, bmargin=45mm}
 \pagestyle{mainstyle}
 
 \urlstyle{same}
@@ -21,10 +22,15 @@
   \cleardoublepage
   \pagenumbering{arabic}
   \thispagestyle{sectionstyle}
-  \import{}{title}
-  \bigskip
-  \import{}{abstract}
-  \bigskip
+  \twocolumn[
+    \begin{@twocolumnfalse}
+      \import{}{title}
+      \bigskip
+      \import{}{abstract}
+      \bigskip
+      \bigskip
+    \end{@twocolumnfalse}
+  ]
   \import{}{introduction}
   \import{}{problem}
   \import{}{background}
