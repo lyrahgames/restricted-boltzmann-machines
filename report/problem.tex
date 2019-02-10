@@ -4,6 +4,18 @@
 \begin{document}
   \section{The Problem} % (fold)
   \label{sec:the_problem}
+    \begin{table*}
+      \center
+      \caption{%
+        The table shows examples of binary ratings for movies made by some imaginary users.
+        Every row represents a user and every column a movie.
+        The number $0$ is used to point out that the user does not like the movie and $1$ for the opposite.
+        The symbol $\times$ is used if there was no rating for the movie by this user.
+      }
+      \label{tab:problem-example}
+      % \footnotesize
+      \input{figures/problem-example}
+    \end{table*}
     Collaborative filtering as seen in a modern narrow sense basically can be described as a method to make automatic predictions about interests of users by collecting the preferences or tastes of many users.
     The underlying assumption of the collaborative filtering approach is that if a person A has the same opinion as a person B on an issue, A is more likely to have B's opinion on a different issue than that of a randomly chosen person.
 
@@ -12,18 +24,6 @@
     The entries with $0$ and $1$ are already known and shall be used to predict the unknown values with $\times$.
     In the example the users \enquote{James T. Kirk} and \enquote{Thorin Oakenshield} both like the movies \enquote{Star Trek} and \enquote{The Matrix}.
     So one could assume that the user \enquote{James T. Kirk} likes the movie \enquote{Van Helsing} and that the user \enquote{Thorin Oakenshield} does not like the movie \enquote{Harry Potter}.
-    \begin{table*}[h]
-      \center
-      \caption{%
-        The table shows examples for ratings of movies made by some users.
-        Every row represents a user and every column a movie.
-        $0$ stands for \enquote{does not like} and $1$ for \enquote{likes}.
-        $\times$ is used if there was no rating for the movie by this user.
-      }
-      \label{tab:problem-example}
-      % \footnotesize
-      \input{figures/problem-example}
-    \end{table*}
 
     The abstract goals to achieve this can be described as follows.
     \begin{itemize}

@@ -10,20 +10,22 @@
     For this Netflix provided a training dataset with over 100,000,000 ratings that more than 480,000 users gave about 17,000 movies.
     The complete competition lasted over three years and included two \enquote{Progress Prizes} in the years 2007 and 2008.
     Finally on September 18, 2009 Netflix announced the winner-team of the $\$\, 1,000,000$ \enquote{Grand Prize} with its last submission 24 minutes before the conclusion of the contest.
-    The solution of the winner-team \enquote{BellKor's Pragmatic Chaos} was based on the work of \cite{Hinton2007} and was able to achieve an improvement over Netflix's current algorithm by $10.05\,\%$.
+    The solution of the winner-team \enquote{BellKor's Pragmatic Chaos} was based on the work of \cite{Hinton2007} which used restricted Boltzmann machines (RBMs) to efficiently predict the user ratings.
+    With this algorithm the winner-team was able to achieve an improvement over Netflix's current algorithm by $10.05\,\%$.
     \cite{Hinton2007,NetflixPrize,NetflixPrizeDataset}
 
-    In \cite{Hinton2007} restricted Boltzmann machines (RBMs) were applied the first time to the task of collaborative filtering.
+    In \cite{Hinton2007} different RBMs were applied to the task of collaborative filtering for the first time.
     Even with the basic ideas presented in this paper one could achieve an error rate that was well over $6\,\%$ better than the score of Netflix's own system.
-    Additionally, RBMs in comparison to other proposed solutions were able to deal with such a big dataset much more efficiently.
+    Additionally, in comparison to other proposed solutions RBMs were able to deal much more efficiently with big datasets, like the ones given by Netflix for the competition.
     \cite{Hinton2007}
 
-    RBMs have also found their application in other machine learning topics as well.
+    RBMs have found their application in other machine learning topics as well.
     In \cite{Murphy2012} an RBM is introduced in topic modelling as a more precise alternative to the common latent Dirichlet allocation.
     In \cite{Larochelle2008} discriminative RBMs are used for classification in a self-contained framework and in \cite{Hinton2006} RBMs are even used as basic building blocks in much bigger deep neural networks (DNNs) to efficiently reduce the dimensionality of some given data.
-    According to \cite{Montufar2018} in the mathematical theory of machine learning RBMs play an important role and are not fully investigated, yet.
+    According to \cite{Montufar2018} RBMs play an important role in the mathematical theory of machine learning and are not fully investigated, yet.
 
     RBMs in general consists of a basic and simple structure with good mathematical properties for which one can find efficient learning algorithms.
-    The successful application of RBMs in these different topics of machine learning make them one of the most interesting subjects to study.
+    The successful application of RBMs in these different topics of machine learning make them an interesting subject to study and understand.
+    In the next sections we will talk about the details of RBMs used for the topic of collaborative filtering and especially about how to predict user ratings for movies as a direct application to a real world problem.
   % section introduction (end)
 \end{document}
