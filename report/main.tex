@@ -7,6 +7,8 @@
 \urlstyle{same}
 \def\UrlBigBreaks{\do\/\do-\do:}
 
+\DeclareMathOperator{\sigm}{\mathrm{sigm}}
+\DeclareMathOperator{\expect}{\mathds{E}}
 
 \begin{document}
   \import{}{titlepage}
@@ -21,16 +23,17 @@
   \thispagestyle{sectionstyle}
   \import{}{title}
   \bigskip
-  \import{.}{abstract}
+  \import{}{abstract}
   \bigskip
-  \import{}{introduction.tex}
-  \import{}{background.tex}
+  \import{}{introduction}
+  \import{}{problem}
+  \import{}{background}
   \import{}{model}
   \import{}{learning}
   \import{}{inference}
-  \import{}{implementation.tex}
-  % \import{}{results.tex}
-  \import{}{conclusion.tex}
+  \import{}{implementation}
+  % \import{}{results}
+  \import{}{conclusion}
 
   \nocite{*}
   \phantomsection

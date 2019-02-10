@@ -4,11 +4,34 @@
 \begin{document}
   \section{Learning} % (fold)
   \label{sec:Learning}
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    \[
+      \mathscr{S} \in V^s
+      \separate
+      \function{\mathscr{L}[\mathscr{S}]}{\setReal^{n\times m + n + m}}{\setReal}
+      \separate
+      \mathscr{L}[\mathscr{S}](ϑ) \define \frac{1}{s} \sum_{k=1}^s \ln p[ϑ]\roundBrackets{\mathscr{S}_k}
+    \]
+    \[
+      \nabla_W \mathscr{L}[\mathscr{S}](ϑ) = \frac{1}{s} \sum_{k=1}^s \expect_ϑ\boxBrackets{\mathscr{V}\transpose{\mathscr{H}} \middle\vert \mathscr{S}_k} - \expect_ϑ\boxBrackets{\mathscr{V}\transpose{\mathscr{H}}}
+    \]
+    \begin{figure}
+      \center
+      \includegraphics[width=0.9\textwidth]{figures/gibbs-sampling-scheme.pdf}
+      \caption{%
+        The figure shows the basic scheme of Gibbs sampling.
+      }
+      \label{fig:gibbs-sampling-scheme}
+    \end{figure}
+    \[
+      \expect_ϑ\boxBrackets{\mathscr{V}\transpose{\mathscr{H}}} \approx v^{(k)}\transpose{h^{(k)}}
+    \]
+    \begin{figure}
+      \center
+      \includegraphics[width=0.9\textwidth]{figures/rbm-learning-example.pdf}
+      \caption{%
+        The figure shows the application of the learning algorithm to the movie ratings for some user.
+      }
+      \label{fig:gibbs-sampling-scheme}
+    \end{figure}
   % section Learning (end)
 \end{document}
