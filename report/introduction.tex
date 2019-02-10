@@ -4,14 +4,26 @@
 \begin{document}
   \section{Introduction} % (fold)
   \label{sec:introduction}
-    On October 2, 2006 Netflix announced the start of the so called \enquote{Netflix Prize} competition.
-    It was aimed to find the best algorithm for collaborative filtering to predict user ratings for movies based on previous ratings without any other information about the users or the movies.
-    Three years later on September 18, 2009 Netflix announced the winner of the Grand Prize which has beaten the current algorithm \enquote{Cinematch} Netflix already used by over 10\% of error rate.
-    The solution of the winner-team \enquote{BellKor's Pragmatic Chaos} was based on \cite{Hinton2007} and therefore used a special implementation of restricted Boltzmann machines (RBM).
-    The competition has shown that RBMs build a state-of-the-art tool for collaborative filtering.
+    On October 2, 2006 Netflix announced the start of the so-called \enquote{Netflix Prize} competition.
+    It was an open competition aimed to find the best algorithm for collaborative filtering to predict user ratings for movies based on previous ratings without any other information about the users or the movies.
+    Netflix's current algorithm \enquote{Cinematch} introduced the threshold that had to be bested.
+    For this Netflix provided a training dataset with over 100,000,000 ratings that more than 480,000 users gave about 17,000 movies.
+    The complete competition lasted over three years and included two \enquote{Progress Prizes} in the years 2007 and 2008.
+    Finally on September 18, 2009 Netflix announced the winner-team of the $\$\, 1,000,000$ \enquote{Grand Prize} with its last submission 24 minutes before the conclusion of the contest.
+    The solution of the winner-team \enquote{BellKor's Pragmatic Chaos} was based on the work of \cite{Hinton2007} and was able to achieve an improvement over Netflix's current algorithm by $10.05\,\%$.
+    \cite{Hinton2007,NetflixPrize,NetflixPrizeDataset}
+
+    In \cite{Hinton2007} restricted Boltzmann machines (RBMs) were applied the first time to the task of collaborative filtering.
+    Even with the basic ideas presented in this paper one could achieve an error rate that was well over $6\,\%$ better than the score of Netflix's own system.
+    Additionally, RBMs in comparison to other proposed solutions were able to deal with such a big dataset much more efficiently.
+    \cite{Hinton2007}
 
     RBMs have also found their application in other machine learning topics as well.
-    For example, in dimensionality reduction, classification and topic modelling.
-    Due to their basic structure, good properties and fast learning algorithms they are used as basic building blocks in deep neural networks, for example in deep belief networks.
+    In \cite{Murphy2012} an RBM is introduced in topic modelling as a more precise alternative to the common latent Dirichlet allocation.
+    In \cite{Larochelle2008} discriminative RBMs are used for classification in a self-contained framework and in \cite{Hinton2006} RBMs are even used as basic building blocks in much bigger deep neural networks (DNNs) to efficiently reduce the dimensionality of some given data.
+    According to \cite{Montufar2018} in the mathematical theory of machine learning RBMs play an important role and are not fully investigated, yet.
+
+    RBMs in general consists of a basic and simple structure with good mathematical properties for which one can find efficient learning algorithms.
+    The successful application of RBMs in these different topics of machine learning make them one of the most interesting subjects to study.
   % section introduction (end)
 \end{document}
