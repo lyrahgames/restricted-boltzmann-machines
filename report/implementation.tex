@@ -39,7 +39,7 @@
     This means that the matrix of ratings is really sparse without any given structure.
     It would be a waste of memory to use a dense matrix format to save and work with the ratings.
 
-    As consequence a sparse matrix format should be used.
+    As a consequence a sparse matrix format should be used.
     A typical and efficient suggestion is the compressed sparse row format (CSR).
     According to \cite{Bell2008} and \cite{Bell2009} it seems to be one of the best suited formats for this kind of problem.
     Matrix-vector multiplication in CSR can be implemented in parallel on CPUs and modern GPUs using CUDA.
