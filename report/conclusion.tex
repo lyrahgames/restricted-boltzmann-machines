@@ -2,20 +2,17 @@
 \usepackage{standard}
 
 \begin{document}
-  \section{Conclusion} % (fold)
-  \label{sec:Conclusion}
-    RBMs have a simple structure and can be trained with CD which is an efficient algorithm.
-    Based on SOURCE they seem to be one of the best known methods for collaborative filtering.
-    As said in the introduction this is not the only application.
-    RBMs should be used as basic building blocks.
-    They are a powerful tool.
-    Use them if there is a simple connection to hidden features in your data and if you want to predict something.
-    It may be a good idea to insert these into your DNNs as dimensionality reduction.
-
-    Of course one should consider to tweak the explained ideas and algorithms.
-    One can use momentum, weight decay and different types of units.
-    There are some variants of the contrastive divergence as well.
-    According the PAPER even mathematics has not completed the topic of RBMs.
-    They seem to be promising in explaining the connection of quantum theory and deep neural networks.
-  % section Conclusion (end)
+  \section{Further Development} % (fold)
+  \label{sec:Further Development}
+    RBMs consist of a simple mathematical structure and can be trained by using CD which makes learning and inference an efficient procedure.
+    Additionally, CD is open to small high-level optimizations according to \cite{Hinton2010}.
+    Adjusting the learning rate or the mini-batch size for stochastic gradient ascent is only the beginning.
+    Typically, one introduces momentum and weight-decay to the optimization method to reduce noise and to penalize too large weights and biases.
+    Even the initial values for the weights and biases can be tweaked by using different random distributions.
+    Using different varieties of CD, like persistent CD, in one computation can achieve a phenomenal speed up in the learning process in comparison to a naive implementation of CD.
+    Of course it is possible to change the underlying mathematical structure and to use different types of units, like softmax or multinomial units, or to change the network slightly and introduce so-called conditional factored RBMs which seem to solve the problem of collaborative filtering much more efficiently.
+    But doing all this, one should not forget about the monitoring of the results.
+    Especially, overfitting and the learning progress should be measured.
+    \cite{Hinton2007,Hinton2010}
+  % section Further Development  (end)
 \end{document}
