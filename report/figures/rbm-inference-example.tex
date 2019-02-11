@@ -59,15 +59,15 @@
 
 \begin{document}
   \begin{graph}
-    \node[hidden,label={[label distance=0cm]90:\tiny Action\vphantom{g}}] (X) {$x$};
-    \node[hidden,label={[label distance=0cm]90:\tiny Fantasy}] (Y) [right=of X] {$y$};
-    \node[hidden,label={[label distance=0cm]90:\tiny Science Fiction\vphantom{g}}] (Z) [right=of Y] {$z$};
+    \node[hidden,label={[label distance=-0.08cm]90:\scriptsize Action\vphantom{g}}] (X) {$x$};
+    \node[hidden,label={[label distance=-0.08cm]90:\scriptsize Fantasy}] (Y) [right=of X] {$y$};
+    \node[hidden,label={[label distance=-0.08cm]90:\scriptsize Science\vphantom{g}}] (Z) [right=of Y] {$z$};
 
-    \node[visible,label={[label distance=0cm]270:\tiny Van Helsing}] (C) [below=2cm of Y] {$0$};
-    \node[visible,label={[label distance=0cm]270:\tiny The Matrix}] (B) [left=of C] {$\times$};
-    \node[visible,label={[label distance=0cm]270:\tiny Harry Potter}] (D) [right=of C] {$1$};
-    \node[visible,label={[label distance=0cm]270:\tiny Star Trek}] (A) [left=of B] {$1$};
-    \node[visible,label={[label distance=0cm]270:\tiny The Hobbit}] (E) [right=of D] {$\times$};
+    \node[visible,label={[label distance=-0.08cm]270:\scriptsize Helsing}] (C) [below=2cm of Y] {$0$};
+    \node[visible,label={[label distance=-0.08cm]270:\scriptsize Matrix}] (B) [left=of C] {$\times$};
+    \node[visible,label={[label distance=-0.08cm]270:\scriptsize Harry Potter}] (D) [right=of C] {$1$};
+    \node[visible,label={[label distance=-0.08cm]270:\scriptsize Star Trek}] (A) [left=of B] {$1$};
+    \node[visible,label={[label distance=-0.08cm]270:\scriptsize Hobbit}] (E) [right=of D] {$\times$};
 
     \path[-,processblue!30] (A) edge node {} (X);
     % \path[-,processblue!30] (B) edge node {} (X);
@@ -94,15 +94,15 @@
 
 
 
-    \node[hidden,label={[label distance=0cm]90:\tiny Action\vphantom{g}}] (X1) [right=5 of Z] {$0$};
-    \node[hidden,label={[label distance=0cm]90:\tiny Fantasy}] (Y1) [right=of X1] {$1$};
-    \node[hidden,label={[label distance=0cm]90:\tiny Science Fiction\vphantom{g}}] (Z1) [right=of Y1] {$1$};
+    \node[hidden,label={[label distance=-0.08cm]90:\scriptsize Action\vphantom{g}}] (X1) [right=5 of Z] {$0$};
+    \node[hidden,label={[label distance=-0.08cm]90:\scriptsize Fantasy}] (Y1) [right=of X1] {$1$};
+    \node[hidden,label={[label distance=-0.08cm]90:\scriptsize Science\vphantom{g}}] (Z1) [right=of Y1] {$1$};
 
-    \node[visible,label={[label distance=0cm]270:\tiny Van Helsing}] (C1) [below=2cm of Y1] {$0$};
-    \node[visible,label={[label distance=0cm]270:\tiny The Matrix}] (B1) [left=of C1] {$0$};
-    \node[visible,label={[label distance=0cm]270:\tiny Harry Potter}] (D1) [right=of C1] {$1$};
-    \node[visible,label={[label distance=0cm]270:\tiny Star Trek}] (A1) [left=of B1] {$1$};
-    \node[visible,label={[label distance=0cm]270:\tiny The Hobbit}] (E1) [right=of D1] {$1$};
+    \node[visible,label={[label distance=-0.08cm]270:\scriptsize Helsing}] (C1) [below=2cm of Y1] {$0$};
+    \node[visible,label={[label distance=-0.08cm]270:\scriptsize Matrix}] (B1) [left=of C1] {$0$};
+    \node[visible,label={[label distance=-0.08cm]270:\scriptsize Harry Potter}] (D1) [right=of C1] {$1$};
+    \node[visible,label={[label distance=-0.08cm]270:\scriptsize Star Trek}] (A1) [left=of B1] {$1$};
+    \node[visible,label={[label distance=-0.08cm]270:\scriptsize Hobbit}] (E1) [right=of D1] {$1$};
 
     % \path[-,processblue!30] (A1) edge node {} (X1);
     \path[-,processblue!30] (B1) edge node {} (X1);

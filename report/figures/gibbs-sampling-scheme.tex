@@ -63,36 +63,36 @@
     \node[visible] (C1) [right=of B1] {};
     \node[visible] (D1) [right=of C1] {};
     \node[visible] (E1) [right=of D1] {};
-    \node[layer,fit=(A1) (E1),label={[label distance=0cm]-90:$v^{(0)}$}] (VL1) {};
+    \node[layer,fit=(A1) (E1),label={[label distance=0cm]-90:\large $v^{(0)}$}] (VL1) {};
 
     \node[hidden] (X1) [above=2.5cm of E1] {};
     \node[hidden] (Y1) [right=of X1] {};
     \node[hidden] (Z1) [right=of Y1] {};
-    \node[layer,fit=(X1) (Z1),label={[label distance=0cm]90:$h^{(0)}$}] (HL1) {};
+    \node[layer,fit=(X1) (Z1),label={[label distance=0cm]90:\large $h^{(0)}$}] (HL1) {};
 
     \node[visible] (A2) [below=2.5cm of Z1] {};
     \node[visible] (B2) [right=of A2] {};
     \node[visible] (C2) [right=of B2] {};
     \node[visible] (D2) [right=of C2] {};
     \node[visible] (E2) [right=of D2] {};
-    \node[layer,fit=(A2) (E2),label={[label distance=0cm]-90:$v^{(1)}$}] (VL2) {};
+    \node[layer,fit=(A2) (E2),label={[label distance=0cm]-90:\large $v^{(1)}$}] (VL2) {};
 
     \node[hidden] (X2) [above=2.5cm of E2] {};
     \node[hidden] (Y2) [right=of X2] {};
     \node[hidden] (Z2) [right=of Y2] {};
-    \node[layer,fit=(X2) (Z2),label={[label distance=0cm]90:$h^{(1)}$}] (HL2) {};
+    \node[layer,fit=(X2) (Z2),label={[label distance=0cm]90:\large $h^{(1)}$}] (HL2) {};
 
     \node[visible] (A3) [below=2.5cm of Z2] {};
     \node[visible] (B3) [right=of A3] {};
     \node[visible] (C3) [right=of B3] {};
     \node[visible] (D3) [right=of C3] {};
     \node[visible] (E3) [right=of D3] {};
-    \node[layer,fit=(A3) (E3),label={[label distance=0cm]-90:$v^{(2)}$}] (VL3) {};
+    \node[layer,fit=(A3) (E3),label={[label distance=0cm]-90:\large $v^{(2)}$}] (VL3) {};
 
-    \path[->] (VL1) edge node {$p[ϑ](h\vert v)$} (HL1);
-    \path[->] (VL2) edge node {$p[ϑ](h\vert v)$} (HL2);
-    \path[->] (HL1) edge node {$p[ϑ](v\vert h)$} (VL2);
-    \path[->] (HL2) edge node {$p[ϑ](v\vert h)$} (VL3);
+    \path[->] (VL1) edge node {\large $p[ϑ](h\vert v)$} (HL1);
+    \path[->] (VL2) edge node {\large $p[ϑ](h\vert v)$} (HL2);
+    \path[->] (HL1) edge node {\large $p[ϑ](v\vert h)$} (VL2);
+    \path[->] (HL2) edge node {\large $p[ϑ](v\vert h)$} (VL3);
     % \path[->] (VL1) edge node {$p[ϑ](h\vert v)$} (HL1);
   \end{graph}
 \end{document}

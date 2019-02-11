@@ -4,6 +4,15 @@
 \begin{document}
   \section{Learning} % (fold)
   \label{sec:Learning}
+    \begin{figure*}
+      \center
+      \includegraphics[width=0.9\textwidth]{figures/gibbs-sampling-scheme.pdf}
+      \caption{%
+        The figure shows the basic scheme of Gibbs sampling.
+      }
+      \label{fig:gibbs-sampling-scheme}
+    \end{figure*}
+
     The learning procedure for an RBM is rather easy due to its basic structure and good properties.
     First, we need some scalar potential to optimize.
     Learning is always about optimizing some sort of function.
@@ -29,14 +38,6 @@
     The right part is much more difficult.
     The typical method of finding the expectation of the model itself one has to do Gibbs sampling.
     Figure \ref{fig:gibbs-sampling-scheme} demonstrates this method schematically.
-    \begin{figure*}[h]
-      \center
-      \includegraphics[width=0.9\textwidth]{figures/gibbs-sampling-scheme.pdf}
-      \caption{%
-        The figure shows the basic scheme of Gibbs sampling.
-      }
-      \label{fig:gibbs-sampling-scheme}
-    \end{figure*}
 
     Using Gibbs sampling for the right part of the gradient is mathematically ideal but fails when applied to reality because the algorithm is slow.
     The typical procedure to make things good again is to abort the series after some given integer.
