@@ -13,23 +13,32 @@
         The symbol $\times$ is used if there was no rating for the movie by this user.
       }
       \label{tab:problem-example}
-      % \footnotesize
+      \small
       \input{figures/problem-example}
     \end{table*}
-    Collaborative filtering as seen in a modern narrow sense basically can be described as a method to make automatic predictions about interests of users by collecting the preferences or tastes of many users.
-    The underlying assumption of the collaborative filtering approach is that if a person A has the same opinion as a person B on an issue, A is more likely to have B's opinion on a different issue than that of a randomly chosen person.
+    Collaborative filtering as seen in a modern narrow sense basically can be described as a technique to make automatic predictions about interests of users by collecting the preferences or tastes of many users.
+    One often refers  to predicting as \enquote{filtering} and to collecting as \enquote{collaborating}.
+    The underlying assumption of the collaborative filtering approach is that if two persons have the same opinion on one issue then it is likely that they will also have the same opinion on another issue.
+    \cite{WikipediaCollaborativeFiltering}
 
-    To understand the statement of the problem we will use the prediction of movie ratings as done for the \enquote{Netflix Prize} competition.
-    In table \ref{tab:problem-example} one can see some examples for these ratings.
-    The entries with $0$ and $1$ are already known and shall be used to predict the unknown values with $\times$.
+    For convenience table \ref{tab:problem-example} shows examples for movie ratings made by some imaginary users.
+    The entries with $0$ and $1$ determine if a user likes a movie or not and are already known to us.
+    They shall be used to predict the unknown values marked with $\times$.
     In the example the users \enquote{James T. Kirk} and \enquote{Thorin Oakenshield} both like the movies \enquote{Star Trek} and \enquote{The Matrix}.
-    So one could assume that the user \enquote{James T. Kirk} likes the movie \enquote{Van Helsing} and that the user \enquote{Thorin Oakenshield} does not like the movie \enquote{Harry Potter}.
+    So one could assume that both users have similar preferences and therefore the user \enquote{James T. Kirk} would also like the movie \enquote{Van Helsing} because the same is already true for the user \enquote{Thorin Oakenshield}.
+    Vice versa one may say that the user \enquote{Thorin Oakenshield} does not like the movie \enquote{Harry Potter} since \enquote{James T. Kirk} provided a negative rating for that movie.
 
-    The abstract goals to achieve this can be described as follows.
-    \begin{itemize}
-      \item Approximately represent probability distributions over ratings
-      \item Learn a probability distribution based on some given ratings.
-      \item Make predictions for unrated movies for learned parameters.
-    \end{itemize}
-  % section the_problem (end)
+    Here the collaborative filtering problem of predicting user ratings for movies shall be solved by using RBMs as it was done in \cite{Hinton2007}.
+    For that we have to achieve three main goals that together are forming a basic outline of understanding RBMs and their application to collaborative filtering.
+    \begin{description}
+      \item[Model:]{%
+        Approximately represent probability distributions over different user-movie-ratings.
+      }
+      \item[Learn:]{%
+        Learn an optimal probability distribution in this representation based on some given samples.
+      }
+      \item[Infer:]{%
+        Make predictions for unrated movies.
+      }
+    \end{description}
 \end{document}
