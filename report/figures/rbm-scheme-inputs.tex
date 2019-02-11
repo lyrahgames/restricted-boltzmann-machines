@@ -85,7 +85,7 @@
     \path[-] (D) edge node {} (Z);
     \path[-] (Z) edge node {} (E);
 
-    \node[layer,fit=(A) (E),label={[label distance=0cm]270:Visible Units}] (L1) {};
-    \node[layer,fit=(X) (Z),label={[label distance=0cm]90:Hidden Units}] (L2) {};
+    \node[layer,fit=(A) (E),inner sep = 10pt,label={[label distance=0cm]270:\footnotesize \vphantom{g}Visible Units}] (L1) {};
+    \node[layer,fit=(X) (Z),inner sep = 10pt,label={[label distance=0cm]90:\footnotesize Hidden Units}] (L2) {};
   \end{graph}
 \end{document}

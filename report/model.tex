@@ -8,99 +8,124 @@
       \center
       \begin{subfigure}[c]{0.49\textwidth}
         \center
-        \includegraphics[scale=1]{figures/rbm-scheme-inputs.pdf}
+        \includegraphics[scale=1.15]{figures/rbm-scheme-inputs.pdf}
       \end{subfigure}
       \begin{subfigure}[c]{0.49\textwidth}
         \center
-        \includegraphics[scale=1]{figures/rbm-scheme-example.pdf}
+        \includegraphics[scale=1.15]{figures/rbm-scheme-example.pdf}
       \end{subfigure}
       \caption{%
-        Figure for scheme and example!
+        The left part of the figure shows a schematic example of an RBM.
+        The nodes are separated into visible and hidden units and connections are only allowed between those two subsets.
+        The right part shows an example application to the collaborative filtering problem of predicting movie ratings.
+        For one user the visible values are the movie ratings and the hidden values are some features, like movie genres, implicitly learned by the RBM.
       }
       \label{fig:rbm-scheme-and-example}
     \end{figure*}
-    To understand the model of an RBM let us first consider the general idea by looking at the left part of figure \ref{fig:rbm-scheme-and-example}.
-    It shows a simple schematic example of an RBM.
-    At first sight there seems to be no real difference to a standard feed-forward neural network (FFNN) with two layers.
-    For an RBM every edge is undirected.
-    Therefore the influence of one neuron to another cannot be computed directly as one maybe used to be in the FFNN.
 
-    Apart from this subtle difference there are two obvious properties which are defining the RBM.
-    First, the neurons in the RBM are separated into two subsets, the hidden units and the visible units.
-    And second, connections between neurons via edges are only allowed between those two subsets.
+    \subsection{Basic Idea} % (fold)
+    \label{sub:basic_idea}
+      To understand the model of an RBM let us first consider the basic idea by looking at the left part of figure \ref{fig:rbm-scheme-and-example}.
+      It shows a simple schematic example of an RBM.
+      At first sight there seems to be no real difference to a standard feed-forward neural network (FFNN) with two layers.
+      But the subtle difference lies in the fact that every edge connecting different units in an RBM has to be undirected and not directed as in a typical FFNN.
+      Therefore the influence of one unit to another cannot be computed directly through a feed-forward pass.
+      \cite{Murphy2012}
 
-    Based on these properties there is no real obvious interpretation for values of these units.
-    But we have to remember that we want to model a probability distribution.
-    So we will interpret every unit as input value for our RBM.
-    Looking at the right part of figure \ref{fig:rbm-scheme-and-example} it is shown applied on the movie ratings from a user.
-    Every rating from one user can be seen as a visible value.
-    Based on these visible values an RBM can assign some hidden values based on some learned features, like movie genres \enquote{Action} or \enquote{Fantasy}.
-    These hidden values for example would describe if the user likes the movie genre.
+      Apart from this there are two obvious properties which are defining the RBM.
+      First, the units in the RBM are separated into two subsets, the hidden units and the visible units.
+      Second, connections between units are only allowed between those two subsets.
+      This makes it possible to equivalently define an RBM to be an undirected bipartite graph.
+      \cite{Murphy2012,Montufar2018}
 
-    Because we want to model the probability distribution with the given undirected bipartite graph, we first have to define some parameters.
-    Here we can choose the standard approach of introducing biases for every neuron and weights for every edge.
-    Therefore we get two bias vectors for the hidden and visible values and one weight matrix.
-    Figure \ref{fig:rbm-scheme} shows schematically.
-    \begin{figure}[H]
-      \center
-      \includegraphics[width=0.441\textwidth]{figures/rbm-scheme.pdf}
-      \caption{%
-        The figure shows the basic scheme of an RBM with the weight matrix $W$ and bias vectors $b$ and $c$ as parameters describing the probability distribution modelled by the RBM.
-      }
-      \label{fig:rbm-scheme}
-    \end{figure}
+      These properties give us no real obvious interpretation for the values of these units.
+      But we have to remember that we want to model a probability distribution over ratings.
+      Based on this mathematically we will try to interpret every unit as a binary random variable.
+      Later, this will enable us to sample from the probability distribution represented by the RBM and predicting the outcome.
+      Interpreting user ratings to be realizations of the visible random variables we can then see that every visible value in an RBM stands for a movie rating made by some user.
+      The realizations of the hidden random variables can be thought of as non-observable features the RBM has learned implicitly.
+      \cite{Hinton2007,Murphy2012,Montufar2018}
 
-    To be precise, we will first define the sets for the input parameters.
-    \[
-      v \in V \define \set{0,1}{}^n
-    \]
-    \[
-      h \in H \define \set{0,1}{}^m
-    \]
-    The parameters describing the RBM are taken to be real.
-    We will abbreviate the weight matrix and the two bias vectors as one parameter.
-    This will make the following formulas much more readable.
-    \[
-      ϑ \define (W,b,c) \in \setReal^{(n\times m) + n + m}
-    \]
+      Looking at the right part of figure \ref{fig:rbm-scheme-and-example} one sees an example of these ideas for an imaginary user.
+      Every rating from one user can be seen as a visible value.
+      Based on these visible values an RBM can assign some hidden values based on some learned features, like movie genres \enquote{Action} or \enquote{Fantasy}.
+      These hidden values for example would describe if the user likes the movie genre.
+      \cite{towardsdatascience}
 
-    Now we will define the probability distribution the RBM is modelling with respect to its parameters.
-    This is a definition and not a corollary.
-    Of course, we could choose another approach.
-    But this would not be a RBM.
-    \[
-      \function{p[ϑ]}{V\times H}{[0,1]}
-    \]
-    \[
-      p[ϑ](v,h) \define \frac{e^{ -E[ϑ](v,h) }}{Z(ϑ)}
-    \]
-    Here we define $E[ϑ]$ to be the so called energy function of the RBM.
-    We have already introduced non-linearity by the exponential function.
-    Therefore one chooses $E[ϑ]$ as simple as possible.
-    \[
-      \function{E[ϑ]}{V\times H}{\setReal}
-    \]
-    \[
-      E[ϑ](v,h) \define -\transpose{v}Wh - \transpose{v}b - \transpose{h}c
-    \]
-    For completeness the normalization will be supplied.
-    The definition for $Z(ϑ)$ is straightforward and not important for the learning or inference processes.
-    \[
-      Z(ϑ) \define \sum_{v\in V} \sum_{h\in H} e^{ -E[ϑ](v,h) }
-    \]
-    At this point one could think, that major problem in our model.
-    If we cannot observe hidden values then how should we able to model a probability distribution over them.
-    We can omit this problem by defining the probability distribution for the visible values.
-    \[
-      \function{p[ϑ]}{V}{[0,1]}
-    \]
-    \[
-      p[ϑ](v) \define \sum_{h\in H} p[ϑ](v,h)
-    \]
-    This is the complete description of our model.
-    But because of the two main properties of an RBM we can derive an important equation which will enable us to learn an RBM and to do some inference.
-    \[
-      p[ϑ](h \vert v) = \prod_{j=1}^m p[ϑ]\roundBrackets{h_j=1 \middle\vert v}
-    \]
+      Until now we have described how to model the collaborative filtering problem by an RBM but not how to model the RBM itself.
+      Hence, we first have to define some parameters to be able to represent a set of probability distributions which can be learned.
+      The procedure for an RBM is straightforward.
+      We choose the standard approach of introducing biases for every unit and weights for every edge.
+      Therefore we get two bias vectors for the hidden and visible units and one weight matrix for all connections.
+      Figure \ref{fig:rbm-scheme} shows this schematically.
+      \cite{Murphy2012,Hinton2007,Hinton2010,Montufar2018}
+      \begin{figure}
+        \center
+        \includegraphics[width=0.441\textwidth]{figures/rbm-scheme.pdf}
+        \caption{%
+          The figure shows the basic scheme of an RBM with the weight matrix $W$ and bias vectors $b$ and $c$ as parameters describing the probability distribution modelled by the RBM.
+        }
+        \label{fig:rbm-scheme}
+      \end{figure}
+    % subsection basic_idea (end)
+
+    \subsection{Mathematical Details} % (fold)
+    \label{sub:mathematical_details}
+      For the sake of simplicity, we will only assume so-called binary RBMs with binary hidden and visible values and will further on describe them only as RBMs.
+      These RBMs are fundamental to every generalization and are not that much of a constraint.
+      According to \cite{Hinton2007} binary RBMs can be easily extended to categorical RBMs or Gaussian RBMs but it turns out that it is important for the hidden values to stay binary.
+      To be precise, we will first define the sets for the input parameters.
+      \[
+        v \in V \define \set{0,1}{}^n
+      \]
+      \[
+        h \in H \define \set{0,1}{}^m
+      \]
+      The parameters describing the RBM are taken to be real.
+      We will abbreviate the weight matrix and the two bias vectors as one parameter.
+      This will make the following formulas much more readable.
+      \[
+        ϑ \define (W,b,c) \in \setReal^{(n\times m) + n + m}
+      \]
+
+      Now we will define the probability distribution the RBM is modelling with respect to its parameters.
+      This is a definition and not a corollary.
+      Of course, we could choose another approach.
+      But this would not be a RBM.
+      \[
+        \function{p[ϑ]}{V\times H}{[0,1]}
+      \]
+      \[
+        p[ϑ](v,h) \define \frac{e^{ -E[ϑ](v,h) }}{Z(ϑ)}
+      \]
+      Here we define $E[ϑ]$ to be the so called energy function of the RBM.
+      We have already introduced non-linearity by the exponential function.
+      Therefore one chooses $E[ϑ]$ as simple as possible.
+      \[
+        \function{E[ϑ]}{V\times H}{\setReal}
+      \]
+      \[
+        E[ϑ](v,h) \define -\transpose{v}Wh - \transpose{v}b - \transpose{h}c
+      \]
+      For completeness the normalization will be supplied.
+      The definition for $Z(ϑ)$ is straightforward and not important for the learning or inference processes.
+      \[
+        Z(ϑ) \define \sum_{v\in V} \sum_{h\in H} e^{ -E[ϑ](v,h) }
+      \]
+      At this point one could think, that major problem in our model.
+      If we cannot observe hidden values then how should we able to model a probability distribution over them.
+      We can omit this problem by defining the probability distribution for the visible values.
+      \[
+        \function{p[ϑ]}{V}{[0,1]}
+      \]
+      \[
+        p[ϑ](v) \define \sum_{h\in H} p[ϑ](v,h)
+      \]
+      This is the complete description of our model.
+      But because of the two main properties of an RBM we can derive an important equation which will enable us to learn an RBM and to do some inference.
+      \[
+        p[ϑ](h \vert v) = \prod_{j=1}^m p[ϑ]\roundBrackets{h_j=1 \middle\vert v}
+      \]
+    % subsection mathematical_details (end)
   % section The Model (end)
 \end{document}

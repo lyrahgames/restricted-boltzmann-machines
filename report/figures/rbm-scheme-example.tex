@@ -57,15 +57,15 @@
 
 \begin{document}
   \begin{graph}
-    \node[hidden,label={[label distance=0cm]90:\tiny Action\vphantom{g}}] (X) {$0$};
-    \node[hidden,label={[label distance=0cm]90:\tiny Fantasy}] (Y) [right=of X] {$1$};
-    \node[hidden,label={[label distance=0cm]90:\tiny Science Fiction\vphantom{g}}] (Z) [right=of Y] {$1$};
+    \node[hidden,label={[label distance=-0.08cm]90:\scriptsize Action\vphantom{g}}] (X) {$0$};
+    \node[hidden,label={[label distance=-0.08cm]90:\scriptsize Fantasy}] (Y) [right=of X] {$1$};
+    \node[hidden,label={[label distance=-0.08cm]90:\scriptsize Science\vphantom{g}}] (Z) [right=of Y] {$1$};
 
-    \node[visible,label={[label distance=0cm]270:\tiny Van Helsing}] (C) [below=2cm of Y] {$0$};
-    \node[visible,label={[label distance=0cm]270:\tiny The Matrix}] (B) [left=of C] {$0$};
-    \node[visible,label={[label distance=0cm]270:\tiny Harry Potter}] (D) [right=of C] {$1$};
-    \node[visible,label={[label distance=0cm]270:\tiny Star Trek}] (A) [left=of B] {$1$};
-    \node[visible,label={[label distance=0cm]270:\tiny The Hobbit}] (E) [right=of D] {$\times$};
+    \node[visible,label={[label distance=-0.08cm]270:\scriptsize Helsing}] (C) [below=2cm of Y] {$0$};
+    \node[visible,label={[label distance=-0.08cm]270:\scriptsize Matrix}] (B) [left=of C] {$0$};
+    \node[visible,label={[label distance=-0.08cm]270:\scriptsize Harry Potter}] (D) [right=of C] {$1$};
+    \node[visible,label={[label distance=-0.08cm]270:\scriptsize Star Trek}] (A) [left=of B] {$1$};
+    \node[visible,label={[label distance=-0.08cm]270:\scriptsize Hobbit}] (E) [right=of D] {$\times$};
 
     \path[-,processblue!30] (A) edge node {} (X);
     \path[-,processblue!30] (B) edge node {} (X);
@@ -85,7 +85,7 @@
     \path[-,processblue!30] (D) edge node {} (Z);
     \path[-,processblue!30] (Z) edge node {} (E);
 
-    \node[layer,fit=(A) (E),inner sep = 10pt,label={[label distance=0cm]270:Movie Ratings}] (L1) {};
-    \node[layer,fit=(X) (Z),inner sep = 10pt,label={[label distance=0cm]90:Features}] (L2) {};
+    \node[layer,fit=(A) (E),inner sep = 10pt,label={[label distance=0cm]270:\footnotesize Movie Ratings}] (L1) {};
+    \node[layer,fit=(X) (Z),inner sep = 10pt,label={[label distance=0cm]90:\footnotesize Features}] (L2) {};
   \end{graph}
 \end{document}
