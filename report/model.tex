@@ -73,15 +73,26 @@
     \label{sub:mathematical_details}
       For the sake of simplicity, we will only assume so-called binary RBMs with binary hidden and visible values and will further on describe them only as RBMs.
       These RBMs are fundamental to every generalization and are not that much of a constraint.
-      According to \cite{Hinton2007} binary RBMs can be easily extended to categorical RBMs or Gaussian RBMs but it turns out that it is important for the hidden values to stay binary.
-      To be precise, we will first define the sets for the input parameters.
+      According to \cite{Hinton2007} and \cite{Murphy2012} binary RBMs can be easily extended to categorical RBMs or Gaussian RBMs.
+      But it turns out that it is important for the hidden values to stay binary to introduce a sort of information bottleneck which strongly regularizes the mathematical properties of an RBM.
+      \cite{Murphy2012,Hinton2007,Hinton2010,Montufar2018}
+
+      \begin{definition*}[RBM]
+        An RBM $ϑ$ is given by the numbers of visible and hidden units $n,m\in\setNatural$ and a tuple $(W,b,c)$ describing the bias vectors and the weight matrix.
+        \[
+          ϑ \define (W,b,c) \in \setReal^{(n\times m) + n + m}
+        \]
+      \end{definition*}
+
+      To be precise, here and in the following we will assume $n\in\setNatural$ visible units and $m\in\setNatural$ hidden units for an RBM.
+      The sets $V$ and $H$ for all visible value vectors $v$ and hidden value vectors $h$ are then given by the following expressions.
       \[
         v \in V \define \set{0,1}{}^n
-      \]
-      \[
+        \separate
         h \in H \define \set{0,1}{}^m
       \]
-      The parameters describing the RBM are taken to be real.
+
+      The parameters describing the RBM are taken to be real numbers.
       We will abbreviate the weight matrix and the two bias vectors as one parameter.
       This will make the following formulas much more readable.
       \[
