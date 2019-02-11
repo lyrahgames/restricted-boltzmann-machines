@@ -20,7 +20,7 @@ clean:
 
 %.pdf: %.gp $(GNUPLOT_STYLE_FILE) $(LATEX_STYLE_FILE)
 	rm -f $@
-	cd $(*D) && gnuplot -e "set terminal epslatex size 10cm,10cm; set output '$(*F).tex'; load '$(GNUPLOT_STYLE_FILE)'" $(<F)
+	cd $(*D) && gnuplot -e "set terminal epslatex size 7cm,7cm; set output '$(*F).tex'; load '$(GNUPLOT_STYLE_FILE)'" $(<F)
 	sed -i '1i \
 	\\documentclass{standalone}\
 	\\usepackage{utilities}\
