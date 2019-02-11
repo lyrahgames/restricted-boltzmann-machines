@@ -1,6 +1,8 @@
 \documentclass[fleqn,10pt,twoside]{article}
 \usepackage{standard}
 
+\usepackage{placeins}
+
 % \geometry{a4paper, lmargin=45mm, rmargin=35mm, tmargin=40mm, bmargin=35mm}
 \geometry{a4paper, lmargin=27mm, rmargin=27mm, tmargin=30mm, bmargin=35mm}
 \pagestyle{mainstyle}
@@ -13,16 +15,16 @@
 
 \titleformat*{\section}{\large\bfseries}
 \titlespacing*{\section}{0pt}{\baselineskip}{0.2\baselineskip}
-\titlespacing*{\subsection}{0pt}{\baselineskip}{0pt}
+\titlespacing*{\subsection}{0pt}{0.5\baselineskip}{0pt}
 \titleformat*{\subsection}{\bfseries}
 
 \begin{document}
   \import{}{titlepage}
 
-  \cleardoublepage
-  \pagenumbering{roman}
-  \thispagestyle{sectionstyle}
-  \tableofcontents
+  % \cleardoublepage
+  % \pagenumbering{roman}
+  % \thispagestyle{sectionstyle}
+  % \tableofcontents
 
   \cleardoublepage
   \pagenumbering{arabic}
@@ -38,7 +40,7 @@
   ]
   \import{}{introduction}
   \import{}{problem}
-  \import{}{background}
+  % \import{}{background}
   \import{}{model}
   \import{}{learning}
   \import{}{inference}
